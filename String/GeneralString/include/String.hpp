@@ -68,7 +68,6 @@ namespace my
         String operator+(const String &str);
         char& operator[](std::size_t idx);
 
-        //this and internal_assign and allocateMemory extend into new folder utilities
         void reserve(size_t new_size);
 
     private:
