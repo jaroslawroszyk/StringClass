@@ -1,0 +1,3 @@
+add_subdirectory(GeneralString)
+add_subdirectory(StringAccess)
+add_subdirectory(StringMember)
