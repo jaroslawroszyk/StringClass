@@ -3,7 +3,6 @@
 #include "String.hpp"
 
 using namespace my;
-
 auto main() -> int
 {
     String name{"Jarek"};
@@ -12,3 +11,4 @@ auto main() -> int
     name += str;
     fmt::print("Hello {}", name);
 }
+//add loger from githubj

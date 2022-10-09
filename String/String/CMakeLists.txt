@@ -1,4 +1,4 @@
-set(MODULE_NAME GeneralString)
+set(MODULE_NAME String)
 
 set(SOURCES
         src/String.cpp
@@ -15,7 +15,8 @@ target_include_directories(${MODULE_NAME} PUBLIC include)
 target_link_libraries(${MODULE_NAME}
     PUBLIC
         fmt::fmt
-        str::StringAccess
+        str::StringCapacity
+        str::StringElementAccess
         str::StringMember
         str::Utilities
     PRIVATE

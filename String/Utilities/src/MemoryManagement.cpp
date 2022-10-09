@@ -13,19 +13,6 @@ void String::internal_assign(const char* str, std::size_t n, std::size_t pos)
     m_size = new_size;
 }
 
-void String::reserve(size_t new_size)
-{
-    if (m_capacity < new_size)
-    {
-        auto oldData = std::move(m_data);
-        allocateMemory(new_size);
-        if (oldData)
-        {
-            memcpy(m_data.get(), oldData.get(), m_size + 1);
-        }
-        m_capacity = new_size;
-    }
-}
 
 void String::allocateMemory(size_t new_size)
 {

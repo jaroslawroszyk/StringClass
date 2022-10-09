@@ -12,4 +12,4 @@ add_executable(${MODULE_NAME} ${SOURCES} ${HEADERS})
 
 target_link_libraries(${MODULE_NAME}
         PRIVATE
-        str::GeneralString)
+        str::String)

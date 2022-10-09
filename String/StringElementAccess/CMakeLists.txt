@@ -1,7 +1,7 @@
-set(MODULE_NAME StringMember)
+set(MODULE_NAME StringElementAccess)
 
 set(SOURCES
-        src/MemberFunctions.cpp
+        src/ElementAccess.cpp
 )
 
 add_library(${MODULE_NAME} ${SOURCES} ${HEADERS})

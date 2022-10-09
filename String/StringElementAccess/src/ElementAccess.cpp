@@ -14,6 +14,11 @@ namespace my
         return m_data.get()[pos];
     }
 
+    char& String::operator[](std::size_t idx)
+    {
+        return m_data.get()[idx];
+    }
+
     const char *String::data() const
     {
         return m_data.get();
