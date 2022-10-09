@@ -1,4 +1,4 @@
-set(MODULE_NAME GeneralString)
+set(MODULE_NAME String)
 
 set(SOURCES
         src/String.cpp
