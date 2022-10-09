@@ -40,22 +40,42 @@ TEST_F(StringMemberFunctionsTests, CanAssignCharactersIntoStringWithSpecificSize
     EXPECT_EQ(sut.size(),expectedSize);
 }
 
-//check that
-//TEST_F(StringMemberFunctionsTests, CanAssignIntoEmptyStringFourCharacters)
-//{
-//    String sut;
-//    char text{'a'};
-//    sut.assign(4,text);
-//    int expectedSize = 4;
-//    EXPECT_EQ(sut.size(),expectedSize);
-//}
+TEST_F(StringMemberFunctionsTests, CanAssignFourCharactersToStringAndCheckCorrectSizeOfString)
+{
+    String sut;
+    char ch{'j'};
+    sut.assign(4,ch);
+    int expectedSize = 4;
+    EXPECT_EQ(sut.size(),expectedSize);
+}
+//test:
+/*
+ * String& String::operator=(const String& str)
+String& String::operator=(String&& str)
+ */
+TEST_F(StringMemberFunctionsTests,testSeveralAssignIntoEmptyString)
+{
+    String emptyStr{};
+    emptyStr.assign(4,'=');
+    String expected{"===="};
+    // String &assign(size_t , char);
+    EXPECT_EQ(emptyStr.size(),expected.size());
 
-//didn't work properly
-//TEST_F(StringMemberFunctionsTests, CanAssignIntoEmptyStringFourCharacte2rs)
-//{
-//    String sut;
-//    String text{"Text"};
-//    sut.assign(text,0,sut.length());
-//    int expectedSize = 4;
-//    EXPECT_EQ(sut.size(),expectedSize);
-//}
+    const String str("Exemplary");
+    // String &assign(const String &);
+    emptyStr.assign(str);
+    EXPECT_EQ(emptyStr.size(),str.size());
+
+    emptyStr.assign(String("Hello ") + str);
+    int expectedSize = 15;
+    EXPECT_EQ(emptyStr.size(),expectedSize);
+
+//    String &assign(const char * , std::size_t);
+    expectedSize = 7;
+    emptyStr.assign("C-style string", expectedSize);
+    EXPECT_EQ(emptyStr.size(),7);
+
+    // String &assign(const char *);
+    emptyStr.assign("C-style\0string");
+    EXPECT_EQ(emptyStr.size(),expectedSize);
+}

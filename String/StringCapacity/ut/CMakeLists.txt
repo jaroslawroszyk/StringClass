@@ -1,7 +1,7 @@
 set(This ${MODULE_NAME}_Test)
 
 set(TESTSRC
-        src/MemberFunctionsTests.cpp
+        src/CapacityTest.cpp
 )
 
 add_executable(${This} ${TESTSRC})

@@ -1,4 +1,5 @@
 add_subdirectory(GeneralString)
-add_subdirectory(StringAccess)
+add_subdirectory(StringElementAccess)
+add_subdirectory(StringCapacity)
 add_subdirectory(StringMember)
 add_subdirectory(Utilities)

@@ -44,37 +44,10 @@ String::String(size_t n, const char& c)
     m_size = n;
 }
 
-std::size_t String::length() const noexcept
-{
-    return m_size;
-}
 
-std::size_t String::size() const noexcept
-{
-    return m_size;
-}
-
-std::size_t String::capacity() const noexcept
-{
-    return m_capacity;
-}
 
 // Operators
-String& String::operator=(const String& str)
-{
-    if (this == &str) return *this;
-    internal_assign(str.m_data.get(), str.m_size);
-    return *this;
-}
 
-String& String::operator=(String&& str)
-{
-    if (this == &str) return *this;
-    std::swap(m_data, str.m_data);
-    std::swap(m_size, str.m_size);
-    std::swap(m_capacity, str.m_capacity);
-    return *this;
-}
 
 String& String::operator+=(const String& str)
 {
@@ -103,9 +76,6 @@ String String::operator+(const String& str)
     return lhs;
 }
 
-char& String::operator[](std::size_t idx)
-{
-    return m_data.get()[idx];
-}
+
 
 } // namespace my

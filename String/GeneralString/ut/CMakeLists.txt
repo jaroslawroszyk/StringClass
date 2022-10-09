@@ -1,4 +1,4 @@
-set(This ${MODULE_NAME}_test)
+set(This ${MODULE_NAME}_Test)
 
 set(TESTSRC
         src/BasicStringTests.cpp

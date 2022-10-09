@@ -15,7 +15,8 @@ target_include_directories(${MODULE_NAME} PUBLIC include)
 target_link_libraries(${MODULE_NAME}
     PUBLIC
         fmt::fmt
-        str::StringAccess
+        str::StringCapacity
+        str::StringElementAccess
         str::StringMember
         str::Utilities
     PRIVATE

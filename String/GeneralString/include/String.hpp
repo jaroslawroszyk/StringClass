@@ -29,24 +29,45 @@ namespace my
 
         ~String() = default; //extend to cpp
 
-        std::size_t length() const noexcept;
-        std::size_t size() const noexcept;
-        std::size_t capacity() const noexcept;
-        auto Data() const
-        { return m_data.get(); }
-
         // Member Functions
+        String &operator=(String &);
+        String &operator=(const String &);
+        String &operator=(String &&);
         String &assign(const String &);
         String &assign(const char *);
         String &assign(const char * , std::size_t);
         String &assign(size_t , char);
-        String &assign(const String & , std::size_t, std::size_t);
+//        String &assign(const String & , std::size_t, std::size_t); todo: add
 
         // Element Access
         char &at(std::size_t);
         const char &at(std::size_t) const;
+        char& operator[](std::size_t idx);
+        //front
+        //back
         const char *data() const;
         const char *c_str() const;
+
+        //Iterators
+        // begin/cbegin
+        //end/cend
+        //rbegin/crbegin
+        //rend/crend
+
+        // Capacity
+        //empty
+        std::size_t length() const noexcept;
+        std::size_t size() const noexcept;
+        std::size_t capacity() const noexcept;
+        void reserve(size_t new_size);
+        //shrink_to_fit
+
+        auto Data() const
+        { return m_data.get(); }
+
+
+
+
 
 
         // Operators:
@@ -56,9 +77,7 @@ namespace my
                 out << str.m_data[i];
             return out << "\n";
         }
-        String &operator=(String &);
-        String &operator=(const String &);
-        String &operator=(String &&);
+
 
         String &operator+=(const String &);
 
@@ -66,9 +85,6 @@ namespace my
         String& operator +=(const T& t);
 
         String operator+(const String &str);
-        char& operator[](std::size_t idx);
-
-        void reserve(size_t new_size);
 
     private:
         std::unique_ptr<char[]> m_data{nullptr};
@@ -77,7 +93,6 @@ namespace my
 
         void internal_assign(const char* str, std::size_t n, std::size_t pos = 0);
         void allocateMemory(size_t new_size);
-
     };
 } // namespace my
 
