@@ -5,6 +5,7 @@
 #include <iostream>
 #include <ostream>
 #include <memory>
+#include <iterator>
 
 namespace my
 {
@@ -43,19 +44,36 @@ namespace my
         char &at(std::size_t);
         const char &at(std::size_t) const;
         char& operator[](std::size_t idx);
-        //front
-        //back
+        char& operator[](std::size_t idx) const;
+        char& front();
+        const char& front() const;
+        char& back();
+        const char& back() const;
         const char *data() const;
         const char *c_str() const;
 
-        //Iterators
-        // begin/cbegin
-        //end/cend
-        //rbegin/crbegin
-        //rend/crend
+        using iterator = char *;
+        using const_iterator = const char*;
+
+        typedef std::reverse_iterator<iterator> reverse_iterator;
+        typedef std::reverse_iterator<const_iterator> const_reverse_iterator;
+
+        //Iterators - todo: own iterator class and reverse iterator class
+        iterator begin() noexcept;
+        const_iterator begin() const noexcept;
+        const_iterator cbegin() const noexcept;
+        iterator end() noexcept;
+        const_iterator end() const noexcept;
+        const_iterator cend() const noexcept;
+        reverse_iterator rbegin() noexcept;
+        const_reverse_iterator rbegin() const noexcept;
+        const_reverse_iterator crbegin() const noexcept;
+        reverse_iterator rend() noexcept;
+        const_reverse_iterator rend() const noexcept;
+        const_reverse_iterator crend() const noexcept;
 
         // Capacity
-        //empty
+        bool empty() const;
         std::size_t length() const noexcept;
         std::size_t size() const noexcept;
         std::size_t capacity() const noexcept;
@@ -65,11 +83,6 @@ namespace my
         auto Data() const
         { return m_data.get(); }
 
-
-
-
-
-
         // Operators:
         friend std::ostream &operator<<(std::ostream &out , const String &str)
         {
@@ -77,7 +90,6 @@ namespace my
                 out << str.m_data[i];
             return out << "\n";
         }
-
 
         String &operator+=(const String &);
 

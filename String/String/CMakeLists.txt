@@ -17,6 +17,7 @@ target_link_libraries(${MODULE_NAME}
         fmt::fmt
         str::StringCapacity
         str::StringElementAccess
+        str::StringIterators
         str::StringMember
         str::Utilities
     PRIVATE

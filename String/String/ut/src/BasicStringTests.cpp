@@ -10,7 +10,6 @@ protected:
 
     ~BasicStringTests() override{};
 };
-// todo add checking capacity and data
 
 TEST_F(BasicStringTests, CanCreateEmptyString)
 {

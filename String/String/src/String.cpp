@@ -44,10 +44,7 @@ String::String(size_t n, const char& c)
     m_size = n;
 }
 
-
-
 // Operators
-
 
 String& String::operator+=(const String& str)
 {
@@ -75,7 +72,4 @@ String String::operator+(const String& str)
     lhs += str;
     return lhs;
 }
-
-
-
 } // namespace my

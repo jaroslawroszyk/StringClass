@@ -8,12 +8,12 @@ add releases:
 
 ### To implement
 # Element access:
-- at
-- operator-
+- [x]  at
+- [x] operator[]
 - front
 - back
-- data
-- c_str
+- [x] data
+- [x] c_str
 
 # Iterators
 - begin / cbegin
@@ -22,11 +22,11 @@ add releases:
 - rend / crend
 
 # Capacity
-- empty
-- m_size / length
-- max_size
-- reserve
-- capacity
+- [x] empty
+- [x] m_size / length
+- [] max_size
+- [x] reserve
+- [x] capacity
 - shrink_to_fit
 
 # Operations
@@ -36,7 +36,7 @@ add releases:
 - push_back
 - pop_back
 - append
-- operator+=
+- [x] operator+=
 - compare
 - starts_with
 - ends_with
@@ -60,7 +60,7 @@ add releases:
 - npos[static]
 
 # Non-member functions
-- operator+
+- [x] operator+
 - operator==
 - operator!=
 - operator<
@@ -74,7 +74,7 @@ add releases:
 
 # Input/Output
 - Input/output
-- operator<<
+- [x] operator<<
 - operator>>
 - getline
 

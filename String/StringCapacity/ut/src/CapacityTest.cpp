@@ -13,6 +13,12 @@ protected:
     {};
 };
 
+TEST_F(StringCapacityTest, checkEmptyStringIsEmpty)
+{
+    String sut;
+    EXPECT_TRUE(sut.empty());
+}
+
 TEST_F(StringCapacityTest, checkLengthOfGivenString)
 {
     String sut{"Hello in my test"};

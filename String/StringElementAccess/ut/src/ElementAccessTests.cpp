@@ -34,13 +34,24 @@ TEST_F(StringElementAccessTests,CheckCorrectReplaceTheLetterUnderIndex3)
 
 TEST_F(StringElementAccessTests,CheckTheArraySubscriptingOperatorAndAddTheMissingLetter)
 {
-        String sut{"Su "};
-        sut[sut.size() - 1] = 't';
-        EXPECT_EQ(sut.at(2),'t');
+    String sut{"Su "};
+    sut[sut.size() - 1] = 't';
+    EXPECT_EQ(sut.at(2),'t');
 }
 
-//test front
-//test back
+TEST_F(StringElementAccessTests,CheckWhichLetterIsInTheFront)
+{
+    String sut{"Test"};
+    char expected = 'T';
+    EXPECT_EQ(sut.front(), expected);
+}
+
+TEST_F(StringElementAccessTests,CheckWhichLetterIsInTheBack)
+{
+    String sut{"Tests"};
+    char expected = 's';
+    EXPECT_EQ(sut.back(),expected);
+}
 
 TEST_F(StringElementAccessTests, CanCreateStringAndCheckDataUssageIsCorrect)
 {

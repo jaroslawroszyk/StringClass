@@ -2,6 +2,11 @@
 
 namespace my
 {
+bool String::empty() const
+{
+    return m_size ? false : true;
+}
+
 std::size_t String::length() const noexcept
 {
     return m_size;
