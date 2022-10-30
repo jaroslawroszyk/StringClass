@@ -17,10 +17,22 @@ std::size_t String::size() const noexcept
     return m_size;
 }
 
+std::size_t String::max_size() const noexcept
+{
+    return String::npos - 1;
+}
+
 std::size_t String::capacity() const noexcept
 {
     return m_capacity;
 }
+
+void String::shrink_to_fit()
+{
+    decreaseCapacity(m_size);
+}
+
+
 
 void String::reserve(size_t new_size)
 {

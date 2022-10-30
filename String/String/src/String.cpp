@@ -45,27 +45,6 @@ String::String(size_t n, const char& c)
 }
 
 // Operators
-
-String& String::operator+=(const String& str)
-{
-    size_t new_size = m_size + str.m_size;
-
-    reserve(new_size);
-
-    memcpy(
-        m_data.get() + m_size,
-        str.m_data.get(),
-        str.m_size + 1);
-    m_size = new_size;
-    return *this;
-}
-
-template<typename T>
-String& String::operator+=(const T& t)
-{
-    return *this += String(t);
-}
-
 String String::operator+(const String& str)
 {
     String lhs(*this);

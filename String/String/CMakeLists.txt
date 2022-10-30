@@ -18,8 +18,10 @@ target_link_libraries(${MODULE_NAME}
         str::StringCapacity
         str::StringElementAccess
         str::StringIterators
+        str::StringOperation
         str::StringMember
         str::Utilities
+        str::StringNonMemberFunctions
     PRIVATE
 )
 

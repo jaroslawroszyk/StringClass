@@ -1,8 +1,7 @@
-set(MODULE_NAME Utilities)
+set(MODULE_NAME StringNonMemberFunctions)
 
 set(SOURCES
-        src/Helpers.cpp
-        src/MemoryManagement.cpp
+        src/StringNonMemberFunctions.cpp
 )
 
 add_library(${MODULE_NAME} ${SOURCES} ${HEADERS})
@@ -15,3 +14,5 @@ target_link_libraries(${MODULE_NAME}
         str::String
     PRIVATE
 )
+
+add_subdirectory(ut)

@@ -7,32 +7,32 @@ add releases:
  - secound release will be improved("add boost :)")
 
 ### To implement
-# Element access:
+# Element access ( tested ):
 - [x]  at
 - [x] operator[]
-- front
-- back
+- [x] front
+- [x] back
 - [x] data
 - [x] c_str
 
-# Iterators
-- begin / cbegin
-- end / cend
-- rbegin / crbegin
-- rend / crend
+# Iterators ( tested )
+- [x] begin / cbegin
+- [x] end / cend
+- [x] rbegin / crbegin
+- [x] rend / crend
 
-# Capacity
+# Capacity ( tested )
 - [x] empty
 - [x] m_size / length
-- [] max_size
+- [x] max_size
 - [x] reserve
 - [x] capacity
-- shrink_to_fit
+- [x] shrink_to_fit
 
 # Operations
-- clear
+- [x] clear
 - insert
-- erase
+- [x] erase
 - push_back
 - pop_back
 - append
@@ -43,10 +43,10 @@ add releases:
 - contains
 - replace
 - substr
-- copy
+- [x] copy
 - resize
 - resize_and_overwrite
-- swap
+- [x] swap
 
 # Search
 - find
@@ -73,7 +73,6 @@ add releases:
 - erase_if(std::String)
 
 # Input/Output
-- Input/output
 - [x] operator<<
 - operator>>
 - getline

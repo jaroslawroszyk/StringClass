@@ -3,124 +3,148 @@
 #include <cstdint>
 #include <fmt/ostream.h>
 #include <iostream>
-#include <ostream>
-#include <memory>
 #include <iterator>
+#include <memory>
+#include <ostream>
 
 namespace my
 {
-    class String
-    {
-    public:
-        String();
+class String
+{
+public:
+    String();
+    explicit String(char);
+    explicit String(const char*);
+    String(const String&);
+    String(String&&);
+    String(const String&, const std::size_t, std::size_t);
+    String(const char*, std::size_t n);
+    String(std::size_t, const char&);
+    ~String() = default;
 
-        explicit String(char);
+    // Member Functions
+    String& operator=(String&);
+    String& operator=(const String&);
+    String& operator=(String&&);
+    String& assign(const String&);
+    String& assign(const char*);
+    String& assign(const char*, std::size_t);
+    String& assign(size_t, char);
 
-        explicit String(const char *);
+    // Element Access
+    char& at(std::size_t);
+    const char& at(std::size_t) const;
+    char& operator[](std::size_t idx);
+    char& operator[](std::size_t idx) const;
+    char& front();
+    const char& front() const;
+    char& back();
+    const char& back() const;
+    const char* data() const;
+    const char* c_str() const;
 
-        String(const String &);
+    // Iterators - todo: own iterator class and reverse iterator class
+    using iterator = char*;
+    using const_iterator = const char*;
+    typedef std::reverse_iterator<iterator> reverse_iterator;
+    typedef std::reverse_iterator<const_iterator> const_reverse_iterator;
 
-        String(String &&);
+    iterator begin() noexcept;
+    const_iterator begin() const noexcept;
+    const_iterator cbegin() const noexcept;
+    iterator end() noexcept;
+    const_iterator end() const noexcept;
+    const_iterator cend() const noexcept;
+    reverse_iterator rbegin() noexcept;
+    const_reverse_iterator rbegin() const noexcept;
+    const_reverse_iterator crbegin() const noexcept;
+    reverse_iterator rend() noexcept;
+    const_reverse_iterator rend() const noexcept;
+    const_reverse_iterator crend() const noexcept;
 
-        String(const String & , const std::size_t, std::size_t);
+    // Capacity
+    bool empty() const;
+    std::size_t length() const noexcept;
+    std::size_t size() const noexcept;
+    std::size_t max_size() const noexcept;
+    std::size_t capacity() const noexcept;
+    void reserve(size_t new_size);
+    void shrink_to_fit();
 
-        String(const char * , std::size_t n);
+    //  Operations
+    void clear();
+    // insert
+    // erase
+    String& erase(size_t pos, size_t len = npos);
+    String& push_back(char);
+    // pop_back
+    // append
+    String& operator+=(const String&);
+    template <typename T>
+    String& operator+=(const T& t);
+    int compare(const String&) const;
+    // replace
+    // substr
+    std::size_t copy(char*, std::size_t, std::size_t pos = 0);
+    // resize
+    void swap(String&);
 
-        String(std::size_t , const char &);
+    // Constants
+    static const std::size_t npos = -1;
 
-        ~String() = default; //extend to cpp
+    // Operators:
+//    friend std::ostream& operator<<(std::ostream& out, const String& str)
+//    {
+//        for (std::size_t i = 0; i < str.m_size; ++i)
+//            out << str.m_data[i];
+//        return out << "\n";
+//    }
+    String operator+(const String& str);
 
-        // Member Functions
-        String &operator=(String &);
-        String &operator=(const String &);
-        String &operator=(String &&);
-        String &assign(const String &);
-        String &assign(const char *);
-        String &assign(const char * , std::size_t);
-        String &assign(size_t , char);
-//        String &assign(const String & , std::size_t, std::size_t); todo: add
+    auto Data() const { return m_data.get(); }
 
-        // Element Access
-        char &at(std::size_t);
-        const char &at(std::size_t) const;
-        char& operator[](std::size_t idx);
-        char& operator[](std::size_t idx) const;
-        char& front();
-        const char& front() const;
-        char& back();
-        const char& back() const;
-        const char *data() const;
-        const char *c_str() const;
+private:
+    std::unique_ptr<char[]> m_data{nullptr};
+    std::size_t m_size = 0;
+    std::size_t m_capacity = 0;
+    std::size_t m_increaseBy = 15; // shrink_to_fit??
 
-        using iterator = char *;
-        using const_iterator = const char*;
+    // Memory Management
+    void internal_assign(const char* str, std::size_t n, std::size_t pos = 0);
+    void allocateMemory(size_t new_size);
+    void increaseCapacity(const size_t cap);
+    void decreaseCapacity(const size_t cap);
+    void setLength(const size_t len);
+    size_t getLength(const String& str, size_t pos, size_t len) const;
 
-        typedef std::reverse_iterator<iterator> reverse_iterator;
-        typedef std::reverse_iterator<const_iterator> const_reverse_iterator;
+    // Helpers
+    inline void _append(const char* other);
+    void _append(const char* other, size_t n);
+    void _erase(std::size_t, std::size_t);
+    void clear_str(const size_t pos);
+    void fill_str(char* other, const size_t len, const size_t pos, char c);
+};
 
-        //Iterators - todo: own iterator class and reverse iterator class
-        iterator begin() noexcept;
-        const_iterator begin() const noexcept;
-        const_iterator cbegin() const noexcept;
-        iterator end() noexcept;
-        const_iterator end() const noexcept;
-        const_iterator cend() const noexcept;
-        reverse_iterator rbegin() noexcept;
-        const_reverse_iterator rbegin() const noexcept;
-        const_reverse_iterator crbegin() const noexcept;
-        reverse_iterator rend() noexcept;
-        const_reverse_iterator rend() const noexcept;
-        const_reverse_iterator crend() const noexcept;
-
-        // Capacity
-        bool empty() const;
-        std::size_t length() const noexcept;
-        std::size_t size() const noexcept;
-        std::size_t capacity() const noexcept;
-        void reserve(size_t new_size);
-        //shrink_to_fit
-
-        auto Data() const
-        { return m_data.get(); }
-
-        // Operators:
-        friend std::ostream &operator<<(std::ostream &out , const String &str)
-        {
-            for (std::size_t i = 0; i < str.m_size; ++i)
-                out << str.m_data[i];
-            return out << "\n";
-        }
-
-        String &operator+=(const String &);
-
-        template<typename T>
-        String& operator +=(const T& t);
-
-        String operator+(const String &str);
-
-    private:
-        std::unique_ptr<char[]> m_data{nullptr};
-        std::size_t m_size = 0;
-        std::size_t m_capacity = 0;
-
-        void internal_assign(const char* str, std::size_t n, std::size_t pos = 0);
-        void allocateMemory(size_t new_size);
-    };
+// non-member functions
+void swap(String& x, String& y);
+bool operator==(const String& lhs, const String& rhs);
+std::ostream& operator<< (std::ostream& os, const String& str);
+std::istream& operator>> (std::istream& is, String& str);
 } // namespace my
 
-template<>
+template <>
 struct fmt::formatter<my::String>
 {
-    constexpr auto parse(format_parse_context &ctx)->decltype(ctx.begin())
+    constexpr auto parse(format_parse_context& ctx) -> decltype(ctx.begin())
     {
-        auto it = ctx.begin() , end = ctx.end();
+        auto it = ctx.begin(), end = ctx.end();
         if (it != end && *it != '}') throw format_error("invalid format");
         return it;
     }
 
-    template<typename FormatContext>
-    auto format(const my::String &p , FormatContext &ctx) const->decltype(ctx.out())
+    template <typename FormatContext>
+    auto format(const my::String& p, FormatContext& ctx) const -> decltype(ctx.out())
     {
-        return fmt::format_to(ctx.out() , "{}" , p.Data());
+        return fmt::format_to(ctx.out(), "{}", p.Data());
     }
 };

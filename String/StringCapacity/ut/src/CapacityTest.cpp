@@ -47,3 +47,22 @@ TEST_F(StringCapacityTest, reserveNewCapacityAndCheckTheValue)
     int expectedCapacity= 100;
     EXPECT_EQ(sut.capacity(),expectedCapacity);
 }
+
+TEST_F(StringCapacityTest, fillStringWithFiveNumbersAndCheckShrinkUnusedCapacity)
+{
+    String sut;
+    String expected;
+
+    for(int i = 0; i <= 100 ; ++ i)
+    {
+        sut.push_back('3');
+        expected.push_back('3');
+    }
+    EXPECT_EQ(sut, expected);
+    EXPECT_EQ(sut.size(), 101);
+    EXPECT_EQ(sut.capacity(), 105);
+
+    sut.shrink_to_fit();
+    EXPECT_EQ(sut.size(), 101);
+    EXPECT_EQ(sut.capacity(), 105);
+}

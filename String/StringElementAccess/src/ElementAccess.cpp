@@ -41,7 +41,7 @@ char& String::back()
 
 const char& String::back() const
 {
-    return operator[](0);
+    return operator[](m_size - 1);
 }
 
 const char* String::data() const
