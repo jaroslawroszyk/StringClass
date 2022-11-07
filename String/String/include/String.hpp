@@ -1,11 +1,6 @@
 #pragma once
 
-#include <cstdint>
 #include <fmt/ostream.h>
-#include <iostream>
-#include <iterator>
-#include <memory>
-#include <ostream>
 
 namespace my
 {
@@ -72,33 +67,27 @@ public:
     void shrink_to_fit();
 
     //  Operations
-    void clear();
+    void clear() noexcept;
     // insert
     // erase
-    String& erase(size_t pos, size_t len = npos);
+    String& erase(size_t index = 0, size_t count = npos);
     String& push_back(char);
     // pop_back
     // append
     String& operator+=(const String&);
     template <typename T>
     String& operator+=(const T& t);
-    int compare(const String&) const;
+    int compare(const String&) const noexcept;
     // replace
     // substr
-    std::size_t copy(char*, std::size_t, std::size_t pos = 0);
+    std::size_t copy(char*, std::size_t, std::size_t pos = 0) const;
     // resize
-    void swap(String&);
+    void swap(String&) noexcept;
 
     // Constants
     static const std::size_t npos = -1;
 
     // Operators:
-//    friend std::ostream& operator<<(std::ostream& out, const String& str)
-//    {
-//        for (std::size_t i = 0; i < str.m_size; ++i)
-//            out << str.m_data[i];
-//        return out << "\n";
-//    }
     String operator+(const String& str);
 
     auto Data() const { return m_data.get(); }
@@ -107,7 +96,7 @@ private:
     std::unique_ptr<char[]> m_data{nullptr};
     std::size_t m_size = 0;
     std::size_t m_capacity = 0;
-    std::size_t m_increaseBy = 15; // shrink_to_fit??
+    std::size_t m_increaseBy = 15;
 
     // Memory Management
     void internal_assign(const char* str, std::size_t n, std::size_t pos = 0);
@@ -148,3 +137,11 @@ struct fmt::formatter<my::String>
         return fmt::format_to(ctx.out(), "{}", p.Data());
     }
 };
+
+
+//    friend std::ostream& operator<<(std::ostream& out, const String& str)
+//    {
+//        for (std::size_t i = 0; i < str.m_size; ++i)
+//            out << str.m_data[i];
+//        return out << "\n";
+//    }

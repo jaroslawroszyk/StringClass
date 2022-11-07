@@ -18,6 +18,7 @@ void String::_append(const char * other, size_t n)
     operator[](m_size + i) = '\0';
     setLength(m_size + n);
 }
+
 void String::_erase(std::size_t pos, std::size_t n)
 {
     n = getLength(*this,pos,n);

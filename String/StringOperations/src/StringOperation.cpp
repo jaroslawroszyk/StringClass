@@ -2,9 +2,10 @@
 
 namespace my
 {
-std::size_t String::copy(char* s, std::size_t len, std::size_t pos) // properly?
+std::size_t String::copy(char* s, std::size_t len, std::size_t pos) const
 {
     if (!s) throw;
+    if(pos > size()) throw std::out_of_range("out of range");
 
     len = m_size;
 
@@ -16,20 +17,21 @@ std::size_t String::copy(char* s, std::size_t len, std::size_t pos) // properly?
     return len;
 }
 
-void String::swap(String& other)
+void String::swap(String& other) noexcept
 {
     String temp = std::move(*this);
     *this = std::move(other);
     other = std::move(temp);
 }
 
-String& String::erase(size_t pos, size_t len)
+String& String::erase(size_t index, size_t count)
 {
-    _erase(pos, len);
+    if(index > size()) throw std::out_of_range("out_of_range");
+    _erase(index, count);
     return *this;
 }
 
-void String::clear()
+void String::clear() noexcept
 {
     clear_str(0);
 }
@@ -42,11 +44,12 @@ String& String::operator+=(const T& t)
 
 String& String::push_back(char ch)
 {
+    if(size() > max_size()) throw std::length_error("length_error");
     _append(&ch,1);
     return *this;
 }
 
-int String::compare(const String& rhs) const
+int String::compare(const String& rhs) const noexcept
 {
     if(m_size < rhs.m_size) return 1;
     else if(m_size > rhs.m_size) return -1;
@@ -55,6 +58,7 @@ int String::compare(const String& rhs) const
 
 String& String::operator+=(const String& str)
 {
+    if(size() > max_size()) throw std::length_error("length_error");
     size_t new_size = m_size + str.m_size;
 
     reserve(new_size);

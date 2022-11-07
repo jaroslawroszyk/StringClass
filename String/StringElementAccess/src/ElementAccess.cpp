@@ -14,33 +14,37 @@ const char& String::at(std::size_t pos) const
     return m_data.get()[pos];
 }
 
-char& String::operator[](std::size_t idx)
+char& String::operator[](std::size_t pos)
 {
-    return m_data.get()[idx];
+    return m_data.get()[pos];
 }
 
-char& String::operator[](std::size_t idx) const
+char& String::operator[](std::size_t pos) const
 {
-    return m_data.get()[idx];
+    return m_data.get()[pos];
 }
 
 char& String::front()
 {
+    if(empty() == true) throw "undefined behavior";
     return operator[](0);
 }
 
 const char& String::front() const
 {
+    if(empty() == true) throw "undefined behavior";
     return operator[](0);
 }
 
 char& String::back()
 {
+    if(empty() == true) throw "undefined behavior";
     return operator[](m_size - 1);
 }
 
 const char& String::back() const
 {
+    if(empty() == true) throw "undefined behavior";
     return operator[](m_size - 1);
 }
 

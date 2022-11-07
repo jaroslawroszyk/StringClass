@@ -32,20 +32,17 @@ void String::shrink_to_fit()
     decreaseCapacity(m_size);
 }
 
-
-
-void String::reserve(size_t new_size)
+void String::reserve(size_t new_cap)
 {
-    if (m_capacity < new_size)
+    if (m_capacity < new_cap)
     {
         auto oldData = std::move(m_data);
-        allocateMemory(new_size);
+        allocateMemory(new_cap);
         if (oldData)
         {
             memcpy(m_data.get(), oldData.get(), m_size + 1);
         }
-        m_capacity = new_size;
+        m_capacity = new_cap;
     }
 }
-// todo: shrink_to_fit
 }

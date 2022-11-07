@@ -58,6 +58,7 @@ TEST_F(StringCapacityTest, fillStringWithFiveNumbersAndCheckShrinkUnusedCapacity
         sut.push_back('3');
         expected.push_back('3');
     }
+
     EXPECT_EQ(sut, expected);
     EXPECT_EQ(sut.size(), 101);
     EXPECT_EQ(sut.capacity(), 105);

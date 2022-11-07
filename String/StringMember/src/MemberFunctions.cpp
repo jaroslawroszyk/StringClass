@@ -45,19 +45,4 @@ namespace my
         m_data[size] = '\0';
         return *this;
     }
-
-//    String &String::assign(const String &s , size_t pos , size_t n)
-//    {
-////        String str(s , pos , n);
-//        m_size = s.size();
-////        allocateMemory(s.size());
-////        std::memset(m_data.get(),pos,n);
-////        std::memset(m_data().get(),pos,s.size());
-//        //        delete[] m_data;
-////        m_size = str.m_size;
-//        for (std::size_t i = 0; i < m_size; i++)
-//            m_data[i] = s.m_data[pos + i];
-//        m_data[pos] = '\0';
-//        return *this;
-//    }
 }
