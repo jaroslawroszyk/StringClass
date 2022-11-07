@@ -117,8 +117,8 @@ private:
 // non-member functions
 void swap(String& x, String& y);
 bool operator==(const String& lhs, const String& rhs);
-std::ostream& operator<< (std::ostream& os, const String& str);
-std::istream& operator>> (std::istream& is, String& str);
+std::ostream& operator<<(std::ostream& os, const String& str);
+std::istream& operator>>(std::istream& is, String& str);
 } // namespace my
 
 template <>
@@ -137,7 +137,6 @@ struct fmt::formatter<my::String>
         return fmt::format_to(ctx.out(), "{}", p.Data());
     }
 };
-
 
 //    friend std::ostream& operator<<(std::ostream& out, const String& str)
 //    {

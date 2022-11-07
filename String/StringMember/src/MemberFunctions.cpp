@@ -45,4 +45,4 @@ namespace my
         m_data[size] = '\0';
         return *this;
     }
-}
+    } // namespace my

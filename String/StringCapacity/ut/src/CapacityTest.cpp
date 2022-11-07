@@ -53,7 +53,7 @@ TEST_F(StringCapacityTest, fillStringWithFiveNumbersAndCheckShrinkUnusedCapacity
     String sut;
     String expected;
 
-    for(int i = 0; i <= 100 ; ++ i)
+    for (int i = 0; i <= 100; ++i)
     {
         sut.push_back('3');
         expected.push_back('3');

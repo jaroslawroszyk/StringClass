@@ -16,14 +16,14 @@ auto main() -> int
     }
 
     char buffer[20];
-    std::size_t length = str.copy(buffer,6,5);
-    buffer[length]='\0';
+    std::size_t length = str.copy(buffer, 6, 5);
+    buffer[length] = '\0';
     std::cout << "buffer contains: " << buffer << '\n';
 
     String name{"Jarek"};
-    swap(str,name);
+    swap(str, name);
     std::cout << str;
-    swap(name,str);
+    swap(name, str);
     std::cout << name;
     std::cout << "\nsize : " << name.size() << " capacity: " << name.capacity() << '\n';
 

@@ -2,12 +2,12 @@
 
 namespace my
 {
-inline void String::_append(const char * other)
+inline void String::_append(const char* other)
 {
-    _append(other,strlen(other));
+    _append(other, strlen(other));
 }
 
-void String::_append(const char * other, size_t n)
+void String::_append(const char* other, size_t n)
 {
     if (!other || n == 0) // if other is null or size is 0 do nothing
         return;
@@ -21,15 +21,15 @@ void String::_append(const char * other, size_t n)
 
 void String::_erase(std::size_t pos, std::size_t n)
 {
-    n = getLength(*this,pos,n);
-    for(size_t i = pos + n; i < m_size; ++i)
+    n = getLength(*this, pos, n);
+    for (size_t i = pos + n; i < m_size; ++i)
     {
-        operator[](i-n) = operator[](i);
+        operator[](i - n) = operator[](i);
     }
-    clear_str(m_size-n);
+    clear_str(m_size - n);
 }
 
-void String::fill_str(char * other, const size_t len, const size_t pos, char c)
+void String::fill_str(char* other, const size_t len, const size_t pos, char c)
 {
     std::size_t begin = pos;
     while (begin != len)
@@ -39,7 +39,7 @@ void String::fill_str(char * other, const size_t len, const size_t pos, char c)
 
 void String::clear_str(const size_t pos)
 {
-    fill_str(m_data.get(),m_size,pos,'\0');
+    fill_str(m_data.get(), m_size, pos, '\0');
     m_size = pos;
 }
 } // namespace my

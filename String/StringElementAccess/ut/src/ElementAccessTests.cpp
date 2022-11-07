@@ -46,7 +46,7 @@ TEST_F(StringElementAccessTests,CheckWhichLetterIsInTheFront)
     EXPECT_EQ(sut.front(), expected);
 }
 
-TEST_F(StringElementAccessTests,CheckWhichLetterIsInTheFront_constVersion)
+TEST_F(StringElementAccessTests, CheckWhichLetterIsInTheFront_constVersion)
 {
     const String sut{"Test"};
     auto expected = 'T';
@@ -60,11 +60,11 @@ TEST_F(StringElementAccessTests,CheckWhichLetterIsInTheBack)
     EXPECT_EQ(sut.back(),expected);
 }
 
-TEST_F(StringElementAccessTests,CheckWhichLetterIsInTheBack_constVersion)
+TEST_F(StringElementAccessTests, CheckWhichLetterIsInTheBack_constVersion)
 {
     const String sut{"Tests"};
     char expected = 's';
-    EXPECT_EQ(sut.back(),expected);
+    EXPECT_EQ(sut.back(), expected);
 }
 
 TEST_F(StringElementAccessTests, CanCreateStringAndCheckDataUssageIsCorrect)

@@ -26,25 +26,25 @@ char& String::operator[](std::size_t pos) const
 
 char& String::front()
 {
-    if(empty() == true) throw "undefined behavior";
+    if (empty() == true) throw "undefined behavior";
     return operator[](0);
 }
 
 const char& String::front() const
 {
-    if(empty() == true) throw "undefined behavior";
+    if (empty() == true) throw "undefined behavior";
     return operator[](0);
 }
 
 char& String::back()
 {
-    if(empty() == true) throw "undefined behavior";
+    if (empty() == true) throw "undefined behavior";
     return operator[](m_size - 1);
 }
 
 const char& String::back() const
 {
-    if(empty() == true) throw "undefined behavior";
+    if (empty() == true) throw "undefined behavior";
     return operator[](m_size - 1);
 }
 
