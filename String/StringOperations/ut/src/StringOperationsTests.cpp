@@ -80,29 +80,11 @@ TEST_F(StringOperationsTest, checkMemberSwap)
 
 TEST_F(StringOperationsTest, testInsertFunWithPosANdString)
 {
-    String sut{"xmplr"}; // should be xmdupaplr
+    String sut{"xmplr"};
     sut.insert(2, String{"dupa"});
 
     String expected{"xmdupaplr"};
     EXPECT_EQ(sut, expected);
-}
-
-TEST_F(StringOperationsTest, insertTooMuchCharacterIntoStringShouldThrowException)
-{
-    String s{"xmplr"};
-    EXPECT_THROW(
-        {
-            try
-            {
-                s.insert(6, String{"dupa"});
-            }
-            catch (const std::exception& err)
-            {
-                EXPECT_STREQ("out of range", err.what());
-                throw;
-            }
-        },
-        std::out_of_range);
 }
 
 TEST_F(StringOperationsTest, insertCharacterIntoStringUsingConstCharShouldInsertInCorrectPositions)
@@ -115,19 +97,20 @@ TEST_F(StringOperationsTest, insertCharacterIntoStringUsingConstCharShouldInsert
     EXPECT_EQ(sut, expected);
 }
 
-TEST_F(
-    StringOperationsTest,
-    insertTooMuchCharacterIntoStringWithContCharShouldThrowException) // test to possibly refactor ( test with
-                                                                      // exception)
+class StringInsertTestException : public ::testing::TestWithParam<std::tuple<int, String>>
 {
-    String sut{"Exmplr"};
-    const char* ch = "e";
+};
 
+TEST_P(StringInsertTestException, insertTooMuchThanYouCanShouldThrowException)
+{
+    int pos = std::get<0>(GetParam());
+    String str = std::get<1>(GetParam());
     EXPECT_THROW(
         {
             try
             {
-                sut.insert(7, ch);
+                str.assign("xmplr");
+                str.insert(pos, str);
             }
             catch (const std::exception& err)
             {
@@ -137,3 +120,8 @@ TEST_F(
         },
         std::out_of_range);
 }
+
+INSTANTIATE_TEST_SUITE_P(
+    StringInsertTestShouldThrowExceptions,
+    StringInsertTestException,
+    ::testing::Values(std::make_tuple(6, String{"dupa"}), std::make_tuple(7, static_cast<const char*>("d"))));

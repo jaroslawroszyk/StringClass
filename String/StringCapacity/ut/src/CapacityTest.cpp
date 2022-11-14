@@ -15,7 +15,7 @@ protected:
 
 TEST_F(StringCapacityTest, checkEmptyStringIsEmpty)
 {
-    String sut;
+    String sut{};
     EXPECT_TRUE(sut.empty());
 }
 

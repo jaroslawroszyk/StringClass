@@ -15,21 +15,21 @@ protected:
 
 TEST_F(StringElementAccessTests, CheckWhichLetterIsAtTheIndexZero)
 {
-    String str{"Hello!"};
-    EXPECT_EQ(str.at(0),'H');
+    String sut{"Hello!"};
+    EXPECT_EQ(sut.at(0), 'H');
 }
 
 TEST_F(StringElementAccessTests, CheckWhichLetterIsAtTheIndexZeroConstString)
 {
-    const String str{"Hello!"};
-    EXPECT_EQ(str.at(0),'H');
+    const String sut{"Hello!"};
+    EXPECT_EQ(sut.at(0), 'H');
 }
 
 TEST_F(StringElementAccessTests,CheckCorrectReplaceTheLetterUnderIndex3)
 {
-    String str{"Leteer"};
-    str.at(3) = 't';
-    EXPECT_EQ(str.at(3),'t');
+    String sut{"Leteer"};
+    sut.at(3) = 't';
+    EXPECT_EQ(sut.at(3), 't');
 }
 
 TEST_F(StringElementAccessTests,CheckTheArraySubscriptingOperatorAndAddTheMissingLetter)

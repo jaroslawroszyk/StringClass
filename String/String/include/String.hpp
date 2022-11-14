@@ -109,10 +109,10 @@ private:
 
     // Helpers
     inline void _append(const char*);
-    void _append(const char* , size_type);
+    void _append(const char*, size_type);
     void _erase(size_type, size_type);
-    void clear_str(const size_type );
-    void fill_str(char* , const size_type , const size_type , char );
+    void clear_str(const size_type);
+    void fill_str(char*, const size_type, const size_type, char);
 };
 
 // non-member functions

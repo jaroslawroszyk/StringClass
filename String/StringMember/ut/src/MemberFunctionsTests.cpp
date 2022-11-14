@@ -11,11 +11,11 @@ protected:
 
     ~StringMemberFunctionsTests() override
     {};
+    String sut{"Test"};
 };
 
 TEST_F(StringMemberFunctionsTests, CanAssignCharactersIntoStringWithCopyOfStrAndCheckCorrectSize)
 {
-    String sut{"Test"};
     String text{"Expect"};
     sut.assign(text);
     int expectedSize = 6;
@@ -24,7 +24,6 @@ TEST_F(StringMemberFunctionsTests, CanAssignCharactersIntoStringWithCopyOfStrAnd
 
 TEST_F(StringMemberFunctionsTests, CanAssignCharactersIntoStringWithNewWordndCheckCorrectSize)
 {
-    String sut{"Test"};
     const char* text = "expected";
     sut.assign(text);
     int expectedSize = 8;
@@ -33,7 +32,6 @@ TEST_F(StringMemberFunctionsTests, CanAssignCharactersIntoStringWithNewWordndChe
 
 TEST_F(StringMemberFunctionsTests, CanAssignCharactersIntoStringWithSpecificSizeAndCheckChorrectSize)
 {
-    String sut{"Test"};
     const char* text{"Expect"};
     sut.assign(text,6);
     int expectedSize = 6;
@@ -42,17 +40,13 @@ TEST_F(StringMemberFunctionsTests, CanAssignCharactersIntoStringWithSpecificSize
 
 TEST_F(StringMemberFunctionsTests, CanAssignFourCharactersToStringAndCheckCorrectSizeOfString)
 {
-    String sut;
+    String sut{};
     char ch{'j'};
     sut.assign(4,ch);
     int expectedSize = 4;
     EXPECT_EQ(sut.size(),expectedSize);
 }
-//test:
-/*
- * String& String::operator=(const String& str)
-String& String::operator=(String&& str)
- */
+
 TEST_F(StringMemberFunctionsTests,testSeveralAssignIntoEmptyString)
 {
     String emptyStr{};
