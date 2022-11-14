@@ -2,24 +2,24 @@
 
 namespace my
 {
-char& String::at(std::size_t pos)
+char& String::at(size_type pos)
 {
     if (pos > m_size) throw std::out_of_range("out_of_range");
     return m_data.get()[pos];
 }
 
-const char& String::at(std::size_t pos) const
+const char& String::at(size_type pos) const
 {
     if (pos > m_size) throw std::out_of_range("out_of_range");
     return m_data.get()[pos];
 }
 
-char& String::operator[](std::size_t pos)
+char& String::operator[](size_type pos)
 {
     return m_data.get()[pos];
 }
 
-char& String::operator[](std::size_t pos) const
+char& String::operator[](size_type pos) const
 {
     return m_data.get()[pos];
 }

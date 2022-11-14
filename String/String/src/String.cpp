@@ -25,20 +25,20 @@ String::String(String&& rhs)
     *this = std::move(rhs);
 }
 
-String::String(const String& s, size_t pos, size_t n)
+String::String(const String& s, size_type pos, size_type n)
 {
     internal_assign(s.m_data.get(), n, pos);
 }
 
-String::String(const char* cs, size_t n)
+String::String(const char* cs, size_type n)
 {
     internal_assign(cs, n);
 }
 
-String::String(size_t n, const char& c)
+String::String(size_type n, const char& c)
 {
     reserve(n);
-    for (size_t i = 0; i < n; i++)
+    for (size_type i = 0; i < n; i++)
         m_data.get()[i] = c;
     m_data.get()[n] = '\0';
     m_size = n;

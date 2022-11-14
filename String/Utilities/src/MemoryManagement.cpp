@@ -2,9 +2,9 @@
 
 namespace my
 {
-void String::internal_assign(const char* str, std::size_t n, std::size_t pos)
+void String::internal_assign(const char* str, size_type n, size_type pos)
 {
-    size_t new_size = n;
+    size_type new_size = n;
 
     allocateMemory(new_size);
 
@@ -13,7 +13,7 @@ void String::internal_assign(const char* str, std::size_t n, std::size_t pos)
     m_size = new_size;
 }
 
-void String::allocateMemory(size_t new_size)
+void String::allocateMemory(size_type new_size)
 {
     if (m_capacity < new_size)
     {
@@ -22,11 +22,11 @@ void String::allocateMemory(size_t new_size)
     }
 }
 
-void String::increaseCapacity(const size_t n)
+void String::increaseCapacity(const size_type n)
 {
     if (m_capacity > n && m_data) return;
     // Increase Capacity Calculation
-    size_t cap = m_capacity;
+    size_type cap = m_capacity;
     while (cap <= n)
         cap += m_increaseBy;
     m_increaseBy++;
@@ -34,14 +34,14 @@ void String::increaseCapacity(const size_t n)
     reserve(cap); // increase Capacity
 }
 
-void String::decreaseCapacity(const size_t cap)
+void String::decreaseCapacity(const size_type cap)
 {
     if (m_capacity < cap) return;
     if (m_increaseBy > 15) --m_increaseBy;
     allocateMemory(cap);
 }
 
-void String::setLength(const size_t len)
+void String::setLength(const size_type len)
 {
     if (m_size > len)
         clear_str(len);
@@ -50,7 +50,7 @@ void String::setLength(const size_t len)
     m_size = len;
 }
 
-size_t String::getLength(const String& str, size_t pos, size_t len) const
+String::size_type String::getLength(const String& str, size_type pos, size_type len) const
 {
     if (len == npos) len = m_size - pos;
 

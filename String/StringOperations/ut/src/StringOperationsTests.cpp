@@ -77,3 +77,63 @@ TEST_F(StringOperationsTest, checkMemberSwap)
     a.swap(b);
     EXPECT_EQ(a.front(), expected);
 }
+
+TEST_F(StringOperationsTest, testInsertFunWithPosANdString)
+{
+    String sut{"xmplr"}; // should be xmdupaplr
+    sut.insert(2, String{"dupa"});
+
+    String expected{"xmdupaplr"};
+    EXPECT_EQ(sut, expected);
+}
+
+TEST_F(StringOperationsTest, insertTooMuchCharacterIntoStringShouldThrowException)
+{
+    String s{"xmplr"};
+    EXPECT_THROW(
+        {
+            try
+            {
+                s.insert(6, String{"dupa"});
+            }
+            catch (const std::exception& err)
+            {
+                EXPECT_STREQ("out of range", err.what());
+                throw;
+            }
+        },
+        std::out_of_range);
+}
+
+TEST_F(StringOperationsTest, insertCharacterIntoStringUsingConstCharShouldInsertInCorrectPositions)
+{
+    String sut{"Exmplr"};
+    const char* ch = "e";
+    sut.insert(2, ch);
+
+    String expected{"Exemplr"};
+    EXPECT_EQ(sut, expected);
+}
+
+TEST_F(
+    StringOperationsTest,
+    insertTooMuchCharacterIntoStringWithContCharShouldThrowException) // test to possibly refactor ( test with
+                                                                      // exception)
+{
+    String sut{"Exmplr"};
+    const char* ch = "e";
+
+    EXPECT_THROW(
+        {
+            try
+            {
+                sut.insert(7, ch);
+            }
+            catch (const std::exception& err)
+            {
+                EXPECT_STREQ("out of range", err.what());
+                throw;
+            }
+        },
+        std::out_of_range);
+}

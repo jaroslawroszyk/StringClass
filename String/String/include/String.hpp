@@ -7,14 +7,16 @@ namespace my
 class String
 {
 public:
+    using size_type = size_t;
+
     String();
     explicit String(char);
     explicit String(const char*);
     String(const String&);
     String(String&&);
-    String(const String&, const std::size_t, std::size_t);
-    String(const char*, std::size_t n);
-    String(std::size_t, const char&);
+    String(const String&, const size_type, size_type);
+    String(const char*, size_type n);
+    String(size_type, const char&);
     ~String() = default;
 
     // Member Functions
@@ -23,14 +25,14 @@ public:
     String& operator=(String&&);
     String& assign(const String&);
     String& assign(const char*);
-    String& assign(const char*, std::size_t);
-    String& assign(size_t, char);
+    String& assign(const char*, size_type);
+    String& assign(size_type, char);
 
     // Element Access
-    char& at(std::size_t);
-    const char& at(std::size_t) const;
-    char& operator[](std::size_t idx);
-    char& operator[](std::size_t idx) const;
+    char& at(size_type);
+    const char& at(size_type) const;
+    char& operator[](size_type idx);
+    char& operator[](size_type idx) const;
     char& front();
     const char& front() const;
     char& back();
@@ -59,18 +61,18 @@ public:
 
     // Capacity
     bool empty() const;
-    std::size_t length() const noexcept;
-    std::size_t size() const noexcept;
-    std::size_t max_size() const noexcept;
-    std::size_t capacity() const noexcept;
-    void reserve(size_t new_size);
+    size_type length() const noexcept;
+    size_type size() const noexcept;
+    size_type max_size() const noexcept;
+    size_type capacity() const noexcept;
+    void reserve(size_type new_size);
     void shrink_to_fit();
 
     //  Operations
     void clear() noexcept;
-    // insert
-    // erase
-    String& erase(size_t index = 0, size_t count = npos);
+    void insert(size_type, const char*);
+    void insert(size_type, const String&);
+    String& erase(size_type index = 0, size_type count = npos);
     String& push_back(char);
     // pop_back
     // append
@@ -80,38 +82,37 @@ public:
     int compare(const String&) const noexcept;
     // replace
     // substr
-    std::size_t copy(char*, std::size_t, std::size_t pos = 0) const;
+    size_type copy(char*, size_type, size_type pos = 0) const;
     // resize
     void swap(String&) noexcept;
 
     // Constants
-    static const std::size_t npos = -1;
+    static const size_type npos = -1;
 
     // Operators:
     String operator+(const String& str);
-
     auto Data() const { return m_data.get(); }
 
 private:
     std::unique_ptr<char[]> m_data{nullptr};
-    std::size_t m_size = 0;
-    std::size_t m_capacity = 0;
-    std::size_t m_increaseBy = 15;
+    size_type m_size = 0;
+    size_type m_capacity = 0;
+    size_type m_increaseBy = 15;
 
     // Memory Management
-    void internal_assign(const char* str, std::size_t n, std::size_t pos = 0);
-    void allocateMemory(size_t new_size);
-    void increaseCapacity(const size_t cap);
-    void decreaseCapacity(const size_t cap);
-    void setLength(const size_t len);
-    size_t getLength(const String& str, size_t pos, size_t len) const;
+    void internal_assign(const char* str, size_type n, size_type pos = 0);
+    void allocateMemory(size_type);
+    void increaseCapacity(const size_type);
+    void decreaseCapacity(const size_type);
+    void setLength(const size_type len);
+    size_type getLength(const String&, size_type, size_type) const;
 
     // Helpers
     inline void _append(const char* other);
-    void _append(const char* other, size_t n);
-    void _erase(std::size_t, std::size_t);
-    void clear_str(const size_t pos);
-    void fill_str(char* other, const size_t len, const size_t pos, char c);
+    void _append(const char* other, size_type n);
+    void _erase(size_type, size_type);
+    void clear_str(const size_type pos);
+    void fill_str(char* other, const size_type len, const size_type pos, char c);
 };
 
 // non-member functions
@@ -137,10 +138,3 @@ struct fmt::formatter<my::String>
         return fmt::format_to(ctx.out(), "{}", p.Data());
     }
 };
-
-//    friend std::ostream& operator<<(std::ostream& out, const String& str)
-//    {
-//        for (std::size_t i = 0; i < str.m_size; ++i)
-//            out << str.m_data[i];
-//        return out << "\n";
-//    }

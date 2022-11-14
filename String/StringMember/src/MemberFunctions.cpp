@@ -28,7 +28,7 @@ namespace my
         return (*this) = String(str);
     }
 
-    String &String::assign(size_t size , char s)
+    String& String::assign(size_type size, char s)
     {
         m_size = size;
         allocateMemory(size);
@@ -37,7 +37,7 @@ namespace my
         return *this;
     }
 
-    String &String::assign(const char *str , size_t size)
+    String& String::assign(const char* str, size_type size)
     {
         m_size = size;
         allocateMemory(size);
