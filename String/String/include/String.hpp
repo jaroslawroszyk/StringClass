@@ -31,8 +31,8 @@ public:
     // Element Access
     char& at(size_type);
     const char& at(size_type) const;
-    char& operator[](size_type idx);
-    char& operator[](size_type idx) const;
+    char& operator[](size_type);
+    char& operator[](size_type) const;
     char& front();
     const char& front() const;
     char& back();
@@ -65,7 +65,7 @@ public:
     size_type size() const noexcept;
     size_type max_size() const noexcept;
     size_type capacity() const noexcept;
-    void reserve(size_type new_size);
+    void reserve(size_type);
     void shrink_to_fit();
 
     //  Operations
@@ -78,7 +78,7 @@ public:
     // append
     String& operator+=(const String&);
     template <typename T>
-    String& operator+=(const T& t);
+    String& operator+=(const T&);
     int compare(const String&) const noexcept;
     // replace
     // substr
@@ -108,15 +108,15 @@ private:
     size_type getLength(const String&, size_type, size_type) const;
 
     // Helpers
-    inline void _append(const char* other);
-    void _append(const char* other, size_type n);
+    inline void _append(const char*);
+    void _append(const char* , size_type);
     void _erase(size_type, size_type);
-    void clear_str(const size_type pos);
-    void fill_str(char* other, const size_type len, const size_type pos, char c);
+    void clear_str(const size_type );
+    void fill_str(char* , const size_type , const size_type , char );
 };
 
 // non-member functions
-void swap(String& x, String& y);
+void swap(String&, String&);
 bool operator==(const String& lhs, const String& rhs);
 std::ostream& operator<<(std::ostream& os, const String& str);
 std::istream& operator>>(std::istream& is, String& str);
